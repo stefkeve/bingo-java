@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Bingo-java login</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<base href="/">
+<body>
+    <h1>Bingo java login</h1>
+    <div>
+        <div class='login-container'>
+            With Google: <a href="/oauth2/authorization/google">click here</a>
+        </div>
+    </div>
+    <div class="user-container" style="display: none">
+        <p>Logged in as: <span id="user"></span></p>
+        <div>
+            <button onClick="logout()" class="btn btn-primary">Logout</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+          $.get("/user", function(data) {
+              if (data !== undefined) {
+                $("#user").html(data.name);
+                $(".login-container").hide();
+                $(".user-container").show();
+              }
+
+          });
+          var logout = function() {
+            $.post("/logout", function() {
+              $("#user").html('');
+              $(".login-container").show();
+              $(".user-container").hide();
+            })
+            return true;
+          }
+        </script>
+</body>
+</html>

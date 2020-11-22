@@ -1,0 +1,37 @@
+spring:
+    datasource:
+        username: root
+        password: root
+        url: jdbc:mysql://${MYSQL_HOST:db}:3306/bingodb
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show_sql: false
+        properties:
+            hibernate:
+                format_sql: true
+    security:
+        oauth2:
+            client:
+                registration:
+                    google:
+                        client-id: 578334137997-l4p5d9diljgs0u53agn3ksbarhckv8km.apps.googleusercontent.com
+                        client-secret: CqNTOx1xcRl7Rf3LJD8Q6oAJ
+                    scope:
+                        - email
+                        - profile
+    logging:
+        level:
+            com.workshop.bingo: DEBUG
+            org.springframework.web: DEBUG
+            org.springframework.security: DEBUG
+            org.hibernate.SQL: DEBUG
+            org.hibernate.type: TRACE
+    springdoc:
+        packagesToScan:
+            - com.workshop.bingo.controllers
+        pathsToMatch:
+            - /api/**
+        swagger-ui:
+            disable-swagger-default-url: true
+
